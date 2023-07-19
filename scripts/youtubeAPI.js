@@ -328,7 +328,7 @@ export default class YoutubeAPI {
         this.#oauth2Client.setCredentials(tokens);
         this.refreshToken = tokens.refresh_token;
 
-        this.youtubeApi = google.youtube({
+        this.#youTubeAPI = google.youtube({
             version: 'v3',
             auth: this.#oauth2Client
         });
