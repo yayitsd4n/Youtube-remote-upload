@@ -1,9 +1,9 @@
-import 'dotenv/config';
 import path from 'path';
 import keytar from 'keytar';
 import inquirer from 'inquirer';
 import clipboard from 'clipboardy';
 import YoutubeAPI from './scripts/youtubeAPI.js';
+
 
 /*
     * Get the Google OAuth2 refresh token if the app has already been given consent
@@ -14,11 +14,12 @@ import YoutubeAPI from './scripts/youtubeAPI.js';
 */
 const refreshToken = await keytar.getPassword('YouTubeRemoteUpload', 'refreshToken');
 const youtubeAPI = new YoutubeAPI(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    process.env.GOOGLE_REDIRECT_URL,
+    "992571060329-bu2hjmu551856a43iuea33btgoh4lpuh.apps.googleusercontent.com",
+    "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",
+    "http://localhost:3000/oauth2callback",
     refreshToken
 );
+
 await youtubeAPI.init();
 await keytar.setPassword('youTubeRemoteUpload', 'refreshToken', youtubeAPI.refreshToken);
 
